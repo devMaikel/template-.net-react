@@ -7,7 +7,7 @@ namespace backend.Controllers;
 public class HelloWorldController : Controller
 {
     [HttpGet]
-    public string Get() => "Hello world test!";
+    public string Get() => "Hello world!!!";
 
     [HttpGet("{id:int:min(10)}")] // /HelloWorld/10/HelloWorld/10
     public IActionResult GetById(int id) {
@@ -18,4 +18,5 @@ public class HelloWorldController : Controller
     public IActionResult GetFromParam([FromQuery] int id, int rg=5) {
         return Ok(new { message = string.Format("Id is: {0} and Rg is: {1}", id, rg)});
     }
+
 }

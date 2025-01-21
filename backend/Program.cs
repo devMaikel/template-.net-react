@@ -1,3 +1,5 @@
+using backend.Repository;
+
 namespace backend;
 
 public class Program
@@ -9,6 +11,9 @@ public class Program
         // Add services to the container.
 
         builder.Services.AddControllers();
+        builder.Services.AddDbContext<BookContext>();
+        builder.Services.AddScoped<BookContext>();
+        builder.Services.AddScoped<BookRepository>();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -18,11 +23,11 @@ public class Program
         // Configure the HTTP request pipeline.
         // if (app.Environment.IsDevelopment())
         // {
-            app.UseSwagger();
+            app.UseSwagger(); // http://localhost:5001/swagger/index.html
             app.UseSwaggerUI();
         // }
 
-        using (var db = new MyContext())
+        using (var db = new BookContext())
         {
             db.Database.EnsureCreated();
             // Código executado no banco de dados aqui
